@@ -130,6 +130,7 @@ class BinaryTree {
     addVals3(node = this.root){
         if(node === null) return 0
         let total = node.val
+        // console.log(total, node.left, node.right)
         return total + this.addVals3(node.left) + this.addVals3(node.right) 
     }
 }
@@ -143,16 +144,16 @@ class BinaryTree {
 const tree = new BinaryTree()
 tree.insert(5)
 tree.insert(3)
-tree.insert(7)
-tree.insert(1)
-tree.insert(4)
-tree.insert(9)
-tree.insert(2)
-tree.insert(11)
+// tree.insert(7)
+// tree.insert(1)
+// tree.insert(4)
+// tree.insert(9)
+// tree.insert(2)
+// tree.insert(11)
 
 // console.log(inspect(tree, true, 10))
 
 // console.log(tree.search(1))
-console.log(tree.addVals1())
-console.log(tree.addVals2())
+// console.log(tree.addVals1())
+// console.log(tree.addVals2())
 console.log(tree.addVals3())
