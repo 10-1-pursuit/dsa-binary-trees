@@ -66,6 +66,72 @@ class BinaryTree {
     }
 
     // addValues(){} -- breadth first, depth first, recursively
+    // Add up all the vals for each node and return the total
+    addVals1(){
+        // Breadth First
+        // Initialize a total var at 0
+        let total = 0
+        const queue = []
+        queue.push(this.root)
+
+        // Iterate over the queue while the queue has nodes in it
+        while(queue.length){
+            // take the first element in the queue out of the queue and look at it
+            const node = queue.shift()
+            // if the element is a node, then add its val to the total
+            if(node !== null){
+                total += node.val
+                // then check if it has a left point and a right pointer and add them to the queue
+                if(node.left !== null){
+                    queue.push(node.left)
+                }
+                if(node.right !== null){
+                    queue.push(node.right)
+                }
+            }
+            // console.log("Total at this iteration:", total)
+            // console.log("Queue at this iteration:" , queue)
+        }
+        return total
+    }
+
+    addVals2(){
+        // Initialize a total var to 0
+        let total = 0
+        const stack = []
+        
+        // numStack is for visual purposes(comment in lines 104, 110 && 123 to see)
+        // const numStack = []
+        stack.push(this.root)
+        while(stack.length){
+            // Take off the LAST element in the stack and save it to a var
+            // []
+            const node = stack.pop()
+            const num = node.val
+            // If the element is a node, add its val to the total
+            if(node !== null){
+                total += node.val
+                // numStack.push(num)
+                if(node.right !== null){
+                    stack.push(node.right)
+                }
+                if(node.left !== null){
+                    stack.push(node.left)
+                }
+                // console.log("Total at this iteration:", total)
+                // console.log("Queue at this iteration:" , stack)
+                // console.log(numStack)
+            }
+        }
+        return total
+    }
+
+    // Adding all the vals recursively
+    addVals3(node = this.root){
+        if(node === null) return 0
+        let total = node.val
+        return total + this.addVals3(node.left) + this.addVals3(node.right) 
+    }
 }
 //        5
 //       / \
@@ -82,7 +148,11 @@ tree.insert(1)
 tree.insert(4)
 tree.insert(9)
 tree.insert(2)
+tree.insert(11)
 
 // console.log(inspect(tree, true, 10))
 
-console.log(tree.search(1))
+// console.log(tree.search(1))
+console.log(tree.addVals1())
+console.log(tree.addVals2())
+console.log(tree.addVals3())
